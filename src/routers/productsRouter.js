@@ -3,7 +3,7 @@ import ProductManager from '../products/productManager.js';
 
 const router = Router();
 
-const tejaManager = new ProductManager('../products.json');
+const tejaManager = new ProductManager('./src/products/products.json');
 
 //endpoint para leer productos
 //http://localhost:8080/products/
@@ -15,6 +15,7 @@ router.get('/', (req,res)=>{
 router.get('/:id', (req,res)=>{
     const id = req.params.id;
     const productFound = tejaManager.getProductByID(id)
+    console.log(productFound)
     res.json({productFound})
 })
 //endpoint para crear/registrar/dar de alta un nuevo producto
