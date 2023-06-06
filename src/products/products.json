@@ -88,5 +88,14 @@
 		"stock": 1500,
 		"id": 10,
 		"code": "Os7f5S8a"
+	},
+	{
+		"title": "test1",
+		"description": "test1",
+		"price": 40,
+		"thumbnail": "test1",
+		"stock": 100,
+		"id": 1,
+		"code": "gk90Xp6A"
 	}
 ]

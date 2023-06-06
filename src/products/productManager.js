@@ -10,6 +10,7 @@ class ProductManager {
         this.#path=path
         this.#products=[]
         this.#idCounter=1
+        this.getProducts()
 
     };
 
@@ -40,7 +41,6 @@ class ProductManager {
     getProducts = async () => {
       try {
         const productsData = await fs.promises.readFile(this.#path, 'utf-8');
-        console.log(productsData);
         const parsedProducts = JSON.parse(productsData);
         this.#products=parsedProducts;
 
@@ -52,7 +52,12 @@ class ProductManager {
 
     getProductByID = (idToFind) => {
       const productFound = this.#products.find((product) => product.id===idToFind )
-      return productFound
+      if (!productFound) {
+        return {message: "Invalid ID"}
+      } else {
+        return productFound
+      }
+
     }
 
     saveProducts = async () => {

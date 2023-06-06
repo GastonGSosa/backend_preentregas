@@ -13,12 +13,20 @@ router.get('/', async (req,res)=>{
 })
 //endpoint para leer un producto a partir de su ID
 router.get('/:id', async (req,res)=>{
-    const id = req.params.id;
-    const productFound = await tejaManager.getProductByID(id)
-    res.json({productFound})
+    const id = parseInt(req.params.id);
+    const productRequested = await tejaManager.getProductByID(id)
+    res.json({productRequested})
 })
 //endpoint para crear/registrar/dar de alta un nuevo producto
 router.post('/', (req,res)=>{
+    const {title, description, price, thumbnail, stock} = req.body
+    if (!title || !description || !price || !thumbnail || !stock) {
+        return res.status(400).json({message: "Missing required fields."})
+    } else if ( isNaN(price) || isNaN(stock)){
+        return res.status(405).json({message:"Stock or Price invalid"})
+    }
+    const productCreated = { title, description, price, thumbnail, stock}
+    tejaManager.addProduct(productCreated)
     res.json({message: 'Producto registrado con exito'})
 })
 //endpoint para actualizar un producto a partir de su ID
