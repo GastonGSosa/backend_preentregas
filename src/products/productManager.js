@@ -92,7 +92,7 @@ class ProductManager {
         const productToDelete = this.#products.find((product) => product.id === id);
       
         if (!productToDelete) {
-          console.error(`No existe un producto con el id: ${id}`);
+          return {message: `No existe un producto con el id: ${id}`};
         } else {
           this.#products = this.#products.filter((item) => item.id !== id);
           console.log(`El producto con el id: ${id} fue eliminado.`);
