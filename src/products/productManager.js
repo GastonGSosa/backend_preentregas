@@ -8,12 +8,11 @@ class ProductManager {
 
     constructor(path){
         this.#path=path
-      if (fs.existsSync(this.#path)) {
-        this.#products=this.loadProducts()
-        this.#idCounter = this.#products.length;
-      }
+        this.#products=[]
+        this.#idCounter=1
 
-    }
+    };
+
     makeUniqueCode = (length) => {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -38,33 +37,31 @@ class ProductManager {
         }
     };
 
-    getProducts() {
-        this.loadProducts()
-        console.table(this.#products)
+    getProducts = async () => {
+      try {
+        const productsData = await fs.promises.readFile(this.#path, 'utf-8');
+        console.log(productsData);
+        const parsedProducts = JSON.parse(productsData);
+        this.#products=parsedProducts;
+
         return this.#products
+      } catch (err) {
+        console.error('Error loading products: ', err);
+      }
+    };
+
+    getProductByID = (idToFind) => {
+      const productFound = this.#products.find((product) => product.id===idToFind )
+      return productFound
     }
 
-    getProductByID(idToFind) {
-        return this.#products.find((product)=>product.id===idToFind)
-    }
-
-    async saveProducts() {
+    saveProducts = async () => {
         try {
-          const productsData = JSON.stringify(this.#products,null,"\t");
+          const productsData = JSON.stringify(this.#products, null, "\t");
           await fs.promises.writeFile(this.#path, productsData, 'utf-8');
           console.log('Products saved successfully.');
         } catch (err) {
           console.error('Error saving products:', err);
-        }
-      };
-    
-      async loadProducts() {
-        try {
-          const productsData = await fs.promises.readFile(this.#path, 'utf-8');
-          console.log('Products loaded successfully.');
-          return JSON.parse(productsData)
-        } catch (err) {
-          console.error('Error loading products:', err);
         }
       };
 

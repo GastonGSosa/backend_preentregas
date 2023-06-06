@@ -4,6 +4,9 @@ import productsRouter from './routers/productsRouter.js'
 
 const app= express();
 
+//Middlewares
+app.use(express.json()); // Middleware para analizar el cuerpo de la solicitud en formato JSON
+
 //endpoints 
 //http://localhost:8080/
 app.get('/', (req,res)=> res.send('ok'));
@@ -13,12 +16,9 @@ app.use('/products',productsRouter)
 
 
 
-
-
-
-
-
-
-
-
-app.listen(8080, ()=> console.log('server up!'));
+//-------* SERVER CONFIGURATION *------//
+const PORT = process.env.PORT || 8080;
+const server = app.listen(PORT, () => {
+    console.log(`Server running on: http>//localhost:${server.address().port}/`);
+});
+server.on('error', (error)=> console.log(`Server error: ${error}`));

@@ -7,16 +7,14 @@ const tejaManager = new ProductManager('./src/products/products.json');
 
 //endpoint para leer productos
 //http://localhost:8080/products/
-router.get('/', (req,res)=>{
-    const products = tejaManager.getProducts()
-    console.log(tejaManager.getProducts())
+router.get('/', async (req,res)=>{
+    const products = await tejaManager.getProducts()
     res.json(products)
 })
 //endpoint para leer un producto a partir de su ID
-router.get('/:id', (req,res)=>{
+router.get('/:id', async (req,res)=>{
     const id = req.params.id;
-    const productFound = tejaManager.getProductByID(id)
-    console.log(productFound)
+    const productFound = await tejaManager.getProductByID(id)
     res.json({productFound})
 })
 //endpoint para crear/registrar/dar de alta un nuevo producto
