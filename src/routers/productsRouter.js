@@ -9,6 +9,7 @@ const tejaManager = new ProductManager('./src/products/products.json');
 //http://localhost:8080/products/
 router.get('/', (req,res)=>{
     const products = tejaManager.getProducts()
+    console.log(tejaManager.getProducts())
     res.json(products)
 })
 //endpoint para leer un producto a partir de su ID

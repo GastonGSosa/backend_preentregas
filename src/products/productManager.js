@@ -8,11 +8,8 @@ class ProductManager {
 
     constructor(path){
         this.#path=path
-        this.#products=[]
-        this.#idCounter=1
-      if (fs.existsSync(this.path)) {
-        const productsData = fs.readFileSync(this.path, 'utf-8');
-        this.#products = JSON.parse(productsData);
+      if (fs.existsSync(this.#path)) {
+        this.#products=this.loadProducts()
         this.#idCounter = this.#products.length;
       }
 
@@ -63,7 +60,7 @@ class ProductManager {
     
       async loadProducts() {
         try {
-          const productsData = await fs.promises.readFile(this.#path);
+          const productsData = await fs.promises.readFile(this.#path, 'utf-8');
           console.log('Products loaded successfully.');
           return JSON.parse(productsData)
         } catch (err) {
