@@ -15,10 +15,6 @@ router.get('/:cid', async (req,res) =>{
         res.status(202).json(cartRequested)
     }
 
-
-
-    
-
 });
 
 //endpoint para crear un carrito
