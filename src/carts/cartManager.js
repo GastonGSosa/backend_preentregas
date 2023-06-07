@@ -19,7 +19,12 @@ class CartManager{
             const parsedCarts = JSON.parse(cartData);
             this.#carts = parsedCarts;
         } catch (err) {
-            console.error('Error loading carts: ', err);
+            if (err.errno===-2){
+                return
+            } else {
+                console.error('Error loading carts: ', err);
+            }
+
         }
     };
 
@@ -43,11 +48,11 @@ class CartManager{
     }
 
     addCart = () => {
-
             const newCart = {
                 id: this.#cartId,
                 products: []
             }
+
             this.#carts.push(newCart);
             this.#cartId++
             this.saveCarts()
@@ -59,29 +64,27 @@ class CartManager{
         return cartFound[cid].products;
     }
 
-    addProductToCart = async (cid,pid) => {
+    addProductToCart = (cid,pid) => {
+        //busco el carrito dado el cart id
+        const cartUpdate = this.#carts.find(cart => cart.id===cid);
 
-        let productAddedCheck = false
+        if (cartUpdate) {
+            //busco si existe el producto dentro de tal carrito
+            const existingProduct = cartUpdate.products.find(product => product.id ===pid);
 
-        const productToAdd = {product: pid, quantity: 1};
-
-        const cartIndex = this.#carts.findIndex(cart => cart.id===cid)
-
-        if (cartIndex===-1) {
-            console.error('El cart con el id proporcionado no existe')
-            return;
-        } else if (this.#carts[cartIndex].products.some((product)=>{
-            product.product === pid
-        })) {
-
-
-
+            if (existingProduct) {
+                //incremento quantity si el producto existe
+                existingProduct.quantity++;
+            } else {
+                //si no, pusheo
+                cartUpdate.products.push({id: pid, quantity: 1})
+            }
+            this.saveCarts()
         }
-
-
     }
 
 }
+
 
 
 
