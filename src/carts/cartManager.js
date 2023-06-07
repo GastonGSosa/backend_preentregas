@@ -68,7 +68,10 @@ class CartManager{
         //busco el carrito dado el cart id
         const cartUpdate = this.#carts.find(cart => cart.id===cid);
 
-        if (cartUpdate) {
+        if (!cartUpdate){
+            return false
+
+        } else if(cartUpdate) {
             //busco si existe el producto dentro de tal carrito
             const existingProduct = cartUpdate.products.find(product => product.id ===pid);
 
@@ -80,6 +83,7 @@ class CartManager{
                 cartUpdate.products.push({id: pid, quantity: 1})
             }
             this.saveCarts()
+            return true
         }
     }
 

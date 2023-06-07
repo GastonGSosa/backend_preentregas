@@ -28,6 +28,20 @@ router.post('/', async (req, res)=> {
 
 })
 
+//endpoint para agregar productos a algun carrito
+router.put('/:cid/product/:pid', (req,res)=>{
+    const cid = parseInt(req.params.cid);
+    const pid = parseInt(req.params.pid);
+
+    const successUpdate = carritoManager.addProductToCart(cid,pid)
+
+    if (!successUpdate) {
+        res.status(404).json({message:'Invalid request'})
+    } else {
+        res.status(202).json({message: 'Update completed!'})
+    }
+
+})
 
 
 
