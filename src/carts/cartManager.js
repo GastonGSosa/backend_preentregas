@@ -9,7 +9,7 @@ class CartManager{
         this.#cartId = 1
         this.#carts = []
         this.#path = path
-        this.loadCarts()
+        //this.loadCarts()
 
     };
 
@@ -18,8 +18,6 @@ class CartManager{
             const cartData = await fs.promises.readFile(this.#path, 'utf-8');
             const parsedCarts = JSON.parse(cartData);
             this.#carts = parsedCarts;
-    
-            return this.#carts
         } catch (err) {
             console.error('Error loading carts: ', err);
         }
@@ -35,14 +33,17 @@ class CartManager{
         }
     };
 
-    addCart = async () => {
-        const newCart = {
-            id: this.#cartId,
-            products: []
-        }
-        this.#carts.push(newCart);
-        this.#cartId++
-        this.saveCarts()
+
+    addCart = () => {
+
+            const newCart = {
+                id: this.#cartId,
+                products: []
+            }
+            this.#carts.push(newCart);
+            this.#cartId++
+            this.saveCarts()
+
     };
 
     getCartProducts = async (cid) => {
@@ -68,14 +69,12 @@ class CartManager{
 
 
         }
-        
-        
-
-
-
-
 
 
     }
 
 }
+
+
+
+export default CartManager
