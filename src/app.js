@@ -1,5 +1,6 @@
 import express from 'express';
 import productsRouter from './routers/productsRouter.js'
+import cartsRouter from './routers/cartRouter.js'
 
 
 const app= express();
@@ -12,7 +13,8 @@ app.use(express.json()); // Middleware para analizar el cuerpo de la solicitud e
 app.get('/', (req,res)=> res.send('ok'));
 app.get('/health', (req,res)=> res.json({message: 'The server is running on port 8080'}));
 
-app.use('/products',productsRouter)
+app.use('/api/products',productsRouter)
+app.use('/api/carts', cartsRouter)
 
 
 
