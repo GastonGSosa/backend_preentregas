@@ -9,7 +9,7 @@ class CartManager{
         this.#cartId = 1
         this.#carts = []
         this.#path = path
-        //this.loadCarts()
+        this.loadCarts()
 
     };
 
@@ -33,6 +33,14 @@ class CartManager{
         }
     };
 
+    getCartById = (cid) => {
+        const cartFound = this.#carts.find((cart)=> cart.id===cid);
+        if (!cartFound){
+            return false
+        } else {
+            return cartFound
+        }
+    }
 
     addCart = () => {
 

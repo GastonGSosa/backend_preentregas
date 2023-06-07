@@ -13,7 +13,7 @@ router.get('/', async (req,res)=>{
 })
 //endpoint para leer un producto a partir de su ID
 router.get('/:pid', async (req,res)=>{
-    const id = parseInt(req.params.pid);
+    const pid = parseInt(req.params.pid);
     const productRequested = await tejaManager.getProductByID(pid)
     res.json({productRequested})
 })
@@ -31,7 +31,7 @@ router.post('/', (req,res)=>{
 })
 //endpoint para actualizar un producto a partir de su ID
 router.put('/:pid', (req,res)=>{
-    const id = parseInt(req.params.pid)
+    const pid = parseInt(req.params.pid)
     const update = req.body
     const updatedProduct = tejaManager.updateProduct(pid,update)
     if (updatedProduct){
@@ -44,7 +44,7 @@ router.put('/:pid', (req,res)=>{
 })
 //endpoint para eliminar/borrar/dar de baja un producto a partir de su ID
 router.delete('/:pid', (req,res)=>{
-    const id= parseInt(req.params.id);
+    const pid= parseInt(req.params.id);
     const deletedProduct = tejaManager.deleteProduct(pid)
     if (deletedProduct) {
         res.status(202).json({message: `El producto con ID ${pid} fue eliminado.`})
