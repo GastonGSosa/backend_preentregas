@@ -71,6 +71,7 @@ class ProductManager {
       };
 
     updateProduct(id,update){
+        let updateCheck = false;
         const productIndex =  this.#products.findIndex(product => product.id === id); //busco el indice del producto, si no lo encuentra, devuelve -1
 
         if (productIndex === -1) {
@@ -79,25 +80,32 @@ class ProductManager {
         }
 
         for (const key in update) {
-            if (this.#products[productIndex].hasOwnProperty(key)) {
-                this.#products[productIndex][key] = update[key]
+            if (!this.#products[productIndex].hasOwnProperty(key)) {
+              console.error(`La propiedad ${key} no se encuentra dentro del producto con id ${id}`)
+              //this.#products[productIndex][key] = update[key]
             } else {
-                console.error(`La propiedad ${key} no se encuentra dentro del producto con id ${id}`)
+              this.#products[productIndex][key] = update[key]
+              this.saveProducts();
+              updateCheck = true
+              //console.error(`La propiedad ${key} no se encuentra dentro del producto con id ${id}`)
             }
         }
-        this.saveProducts();
+        //this.saveProducts();
+        return updateCheck
     };
 
     deleteProduct(id) {
+        let deleteCheck = false;
         const productToDelete = this.#products.find((product) => product.id === id);
       
         if (!productToDelete) {
-          return {message: `No existe un producto con el id: ${id}`};
+          console.log(`No existe un producto con el id: ${id}`);
         } else {
           this.#products = this.#products.filter((item) => item.id !== id);
-          console.log(`El producto con el id: ${id} fue eliminado.`);
           this.saveProducts();
+          deleteCheck = true
         }
+        return deleteCheck;
       }
 
     

@@ -13,7 +13,7 @@
 		"description": "Teja recta",
 		"price": 500,
 		"thumbnail": "francesa.jpg",
-		"stock": 1500,
+		"stock": 4500,
 		"id": 2,
 		"code": "jL8399zE"
 	},
@@ -88,14 +88,5 @@
 		"stock": 1500,
 		"id": 10,
 		"code": "Os7f5S8a"
-	},
-	{
-		"title": "test1",
-		"description": "test1",
-		"price": 40,
-		"thumbnail": "test1",
-		"stock": 100,
-		"id": 1,
-		"code": "gk90Xp6A"
 	}
 ]

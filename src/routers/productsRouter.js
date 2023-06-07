@@ -31,13 +31,27 @@ router.post('/', (req,res)=>{
 })
 //endpoint para actualizar un producto a partir de su ID
 router.put('/:id', (req,res)=>{
-    const id = req.params.id
-    res.json({message: `actualizacion exitosa de producto con id ${id}`})
+    const id = parseInt(req.params.id)
+    const update = req.body
+    const updatedProduct = tejaManager.updateProduct(id,update)
+    if (updatedProduct){
+        res.json({message: `El producto con ID ${id} ha sido actualizado exitosamente`})
+    } else {
+        res.status(405).json({message: "Actualizacion no exitosa"})
+        
+    }
+    
 })
 //endpoint para eliminar/borrar/dar de baja un producto a partir de su ID
 router.delete('/:id', (req,res)=>{
-    const id= req.params.id;
-    res.json({message: `Se elimino exitosamente el producto con id ${id}`})
+    const id= parseInt(req.params.id);
+    const deletedProduct = tejaManager.deleteProduct(id)
+    if (deletedProduct) {
+        res.status(202).json({message: `El producto con ID ${id} fue eliminado.`})
+    } else {
+        res.status(406).json({message: `No se ha podido eliminar el producto.`})
+    }
+    
 })
 
 
