@@ -1,12 +1,19 @@
 import express from 'express';
+import handlebars from 'express-handlebars';
 import productsRouter from './routers/productsRouter.js'
 import cartsRouter from './routers/cartRouter.js'
 
 
-const app= express();
+const app = express();
+
+//configuracion del motor de plantillas
+app.engine('handlebars', handlebars.engine());
+app.set('views', './src/views');
+app.set('view engine', 'handlebars');
 
 //Middlewares
 app.use(express.json()); // Middleware para analizar el cuerpo de la solicitud en formato JSON
+app.use(express.static('./public')); // Middleware para acceder a la carpeta public
 
 //endpoints 
 //http://localhost:8080/
@@ -15,6 +22,9 @@ app.get('/health', (req,res)=> res.json({message: 'The server is running on port
 
 app.use('/api/products',productsRouter)
 app.use('/api/carts', cartsRouter)
+app.get('/motor', (req,res)=>{
+    res.render('ejemplo', {mi_nombre: 'Culini'})
+})
 
 
 
