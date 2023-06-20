@@ -6,6 +6,15 @@ const carritoManager = new CartManager('./src/carts/carts.json');
 
 //endpoint para leer carts
 //http://localhost:8080/api/carts/
+router.get('/',async (req,res) =>{
+    const cartData = carritoManager.getCarts()
+    res.status(202).json(cartData)
+
+})
+
+
+
+
 router.get('/:cid', async (req,res) =>{
     const cid = parseInt(req.params.cid);
     const cartRequested = await carritoManager.getCartById(cid)

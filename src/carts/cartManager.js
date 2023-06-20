@@ -9,9 +9,32 @@ class CartManager{
         this.#cartId = 1
         this.#carts = []
         this.#path = path
-        this.loadCarts()
+        this.checkJson()
+        console.log(this.#carts)
 
     };
+
+    getCarts = () => {
+        return this.#carts
+    }
+
+
+    checkJson = () => {
+        fs.access(this.#path, fs.constants.F_OK, (err) => {
+            if (err) {
+              if (err.code === 'ENOENT') {
+                // Error code ENOENT indicates that the file or directory does not exist (errno -2)
+                console.log('File does not exist, an empty one is being created.');
+              } else {
+                // Handle other errors
+                console.error('Error occurred:', err);
+              }
+            } else {
+              console.log('File exists');
+              this.loadCarts()
+            }
+          });
+    }
 
     loadCarts = async () => {
         try {
@@ -19,7 +42,8 @@ class CartManager{
             const parsedCarts = JSON.parse(cartData);
             this.#carts = parsedCarts;
         } catch (err) {
-            if (err.errno===-2){
+            if (err.code=='ENOENT'){
+                console.log('No file existing, proceding to create a new one.')
                 return
             } else {
                 console.error('Error loading carts: ', err);
@@ -89,7 +113,4 @@ class CartManager{
 
 }
 
-
-
-
-export default CartManager
+export default CartManager;
