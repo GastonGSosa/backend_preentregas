@@ -5,18 +5,27 @@ const router = Router();
 
 const tejaManager = new ProductManager('./src/products/products.json');
 
+
+
 //endpoint para leer productos
 //http://localhost:8080/api/products/
 router.get('/', async (req,res)=>{
     const products = await tejaManager.getProducts()
-    res.json(products)
+    //res.json(products)
+    res.render('../views/home', {products})
 })
+
+
+
+
 //endpoint para leer un producto a partir de su ID
 router.get('/:pid', async (req,res)=>{
     const pid = parseInt(req.params.pid);
     const productRequested = await tejaManager.getProductByID(pid)
-    res.json({productRequested})
+    //res.json({productRequested})
+    res.render('../views/showProduct',productRequested)
 })
+
 //endpoint para crear/registrar/dar de alta un nuevo producto
 router.post('/', (req,res)=>{
     const {title, description, price, thumbnail, stock} = req.body
@@ -29,6 +38,7 @@ router.post('/', (req,res)=>{
     tejaManager.addProduct(productCreated)
     res.json({message: 'Producto registrado con exito'})
 })
+
 //endpoint para actualizar un producto a partir de su ID
 router.put('/:pid', (req,res)=>{
     const pid = parseInt(req.params.pid)
@@ -42,6 +52,7 @@ router.put('/:pid', (req,res)=>{
     }
     
 })
+
 //endpoint para eliminar/borrar/dar de baja un producto a partir de su ID
 router.delete('/:pid', (req,res)=>{
     const pid= parseInt(req.params.id);

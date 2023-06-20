@@ -3,7 +3,7 @@
 		"title": "teja española",
 		"description": "Teja curva",
 		"price": 350,
-		"thumbnail": "espanola.jpg",
+		"thumbnail": "../../assets/espanola.jpeg",
 		"stock": 500,
 		"id": 1,
 		"code": "xlIoGLVm"
@@ -12,7 +12,7 @@
 		"title": "teja francesa",
 		"description": "Teja recta",
 		"price": 500,
-		"thumbnail": "francesa.jpg",
+		"thumbnail": "../../assets/francesa.jpeg",
 		"stock": 4500,
 		"id": 2,
 		"code": "jL8399zE"
@@ -21,7 +21,7 @@
 		"title": "teja italiana",
 		"description": "Teja recta corta",
 		"price": 250,
-		"thumbnail": "tana.jpg",
+		"thumbnail": "../../assets/tana.jpeg",
 		"stock": 25000,
 		"id": 3,
 		"code": "I4UX6r4R"
@@ -30,7 +30,7 @@
 		"title": "teja plastica recta",
 		"description": "Teja plastica recta",
 		"price": 350,
-		"thumbnail": "plastica1.jpg",
+		"thumbnail": "../../assets/plastica1.jpeg",
 		"stock": 5500,
 		"id": 4,
 		"code": "fDmBLN0k"
@@ -39,7 +39,7 @@
 		"title": "teja plastica curva",
 		"description": "Teja plastica curva",
 		"price": 350,
-		"thumbnail": "plastica2.jpg",
+		"thumbnail": "../../assets/plastica2.jpeg",
 		"stock": 5000,
 		"id": 5,
 		"code": "ZbNSU0yn"
@@ -48,7 +48,7 @@
 		"title": "teja metal corta",
 		"description": "Teja metalica corta",
 		"price": 650,
-		"thumbnail": "metal corta.jpg",
+		"thumbnail": "../../assets/metal-corta.png",
 		"stock": 300,
 		"id": 6,
 		"code": "bJ7x9ggx"
@@ -57,7 +57,7 @@
 		"title": "teja metal larga",
 		"description": "Teja metalica larga",
 		"price": 600,
-		"thumbnail": "metal larga.jpg",
+		"thumbnail": "../../assets/metal-larga.png",
 		"stock": 350,
 		"id": 7,
 		"code": "MeE8GkCX"
@@ -66,7 +66,7 @@
 		"title": "teja ecologica",
 		"description": "Teja ecologica",
 		"price": 800,
-		"thumbnail": "eco.jpg",
+		"thumbnail": "../../assets/eco.jpg",
 		"stock": 150,
 		"id": 8,
 		"code": "kaGnC48H"
@@ -75,7 +75,7 @@
 		"title": "teja española esmaltada",
 		"description": "Teja curva esmaltada",
 		"price": 550,
-		"thumbnail": "espanola esmaltada.jpg",
+		"thumbnail": "../../assets/espanola-esmaltada.jpg",
 		"stock": 500,
 		"id": 9,
 		"code": "Qs6kPv7W"
@@ -84,7 +84,7 @@
 		"title": "teja francesa esmaltada",
 		"description": "Teja recta esmaltada",
 		"price": 850,
-		"thumbnail": "francesa esmaltada.jpg",
+		"thumbnail": "../../assets/francesa-esmaltada.jpeg",
 		"stock": 1500,
 		"id": 10,
 		"code": "Os7f5S8a"

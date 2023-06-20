@@ -14,6 +14,7 @@ app.set('view engine', 'handlebars');
 //Middlewares
 app.use(express.json()); // Middleware para analizar el cuerpo de la solicitud en formato JSON
 app.use(express.static('./public')); // Middleware para acceder a la carpeta public
+app.use(express.static('./public/assets')); //Middleware para acceder a la carpeta assets
 
 //endpoints 
 //http://localhost:8080/
@@ -22,8 +23,8 @@ app.get('/health', (req,res)=> res.json({message: 'The server is running on port
 
 app.use('/api/products',productsRouter)
 app.use('/api/carts', cartsRouter)
-app.get('/motor', (req,res)=>{
-    res.render('ejemplo', {mi_nombre: 'Culini'})
+app.get('/api', (req,res)=>{
+    res.render('ejemplo', {mi_nombre: 'Gaston Sosa'})
 })
 
 
