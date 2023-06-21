@@ -2,6 +2,7 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import productsRouter from './routers/productsRouter.js'
 import cartsRouter from './routers/cartRouter.js'
+import { Server } from 'socket.io';
 
 
 const app = express();
@@ -31,7 +32,19 @@ app.get('/api', (req,res)=>{
 
 //-------* SERVER CONFIGURATION *------//
 const PORT = process.env.PORT || 8080;
-const server = app.listen(PORT, () => {
-    console.log(`Server running on: http>//localhost:${server.address().port}/`);
+const serverHttp = app.listen(PORT, () => {
+    console.log(`Server running on: http>//localhost:${serverHttp.address().port}/`);
 });
-server.on('error', (error)=> console.log(`Server error: ${error}`));
+serverHttp.on('error', (error)=> console.log(`Server error: ${error}`));
+const io = new Server(serverHttp)
+
+const log = [];
+
+io.on('connection', (socket) => {
+    console.log('nuevo cliente conectado')
+    socket.on('message', data => {
+        console.log(data)
+        log.push({id:socket.id, message:data})
+        io.emit('history',log)
+    })
+})

@@ -15,7 +15,12 @@ router.get('/', async (req,res)=>{
     res.render('../views/home', {products})
 })
 
+//endpoint para ver los productos en tiempo real
+router.get('/realtimeproducts', async (req,res) => {
+    const products = await tejaManager.getProducts()
 
+    res.render('../views/realTimeProducts', {products})
+})
 
 
 //endpoint para leer un producto a partir de su ID
@@ -64,6 +69,9 @@ router.delete('/:pid', (req,res)=>{
     }
     
 })
+
+
+
 
 
 
